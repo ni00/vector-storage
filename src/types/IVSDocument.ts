@@ -1,12 +1,20 @@
+/**
+ * 向量存储文档接口
+ * 定义了向量存储中文档的数据结构
+ */
 export interface IVSDocument<T> {
-  hits?: number; // hits: Optional field that counts the number of times this document has been returned in a similarity search. Omitted if 0.
-  metadata: T; // metadata: An object containing additional information about the document. The structure of this object can vary depending on the application.
-  text: string; // text: The actual text of the document. This is what is used to calculate the document's vector representation.
-  timestamp: number; // timestamp: The time when the document was added to the vector storage, represented as a Unix timestamp (milliseconds since the Unix Epoch).
-  vectorMag?: number; // vecMag: The magnitude of the document's vector representation. This is precomputed to speed up similarity calculations.
-  vector?: number[]; // vector: The vector representation of the document. This is calculated by an embedding model, such as the OpenAI model.
+  hits?: number;      // 命中次数：可选字段，记录该文档在相似度搜索中被返回的次数。如果为0则省略。
+  metadata: T;        // 元数据：包含关于文档的额外信息。此对象的结构可能根据应用程序而异。
+  text: string;       // 文本：文档的实际文本内容。用于计算文档的向量表示。
+  timestamp: number;  // 时间戳：文档添加到向量存储的时间，表示为Unix时间戳（自Unix纪元以来的毫秒数）。
+  vectorMag?: number; // 向量幅度：文档向量表示的幅度。预先计算以加速相似度计算。
+  vector?: number[];  // 向量：文档的向量表示。由嵌入模型（如OpenAI模型）计算。
 }
 
+/**
+ * 相似度搜索结果项接口
+ * 扩展了文档接口，包含相似度分数
+ */
 export interface IVSSimilaritySearchItem<T> extends IVSDocument<T> {
-  score: number; // score: This is the cosine similarity score for the document. It ranges from 0 to 1, where 1 means the document is extremely similar or identical to the prompt, and a score close to 0 indicates that the document is dissimilar to the prompt.
+  score: number;      // 相似度分数：文档的余弦相似度分数。范围从0到1，其中1表示文档与提示极为相似或完全相同，接近0的分数表示文档与提示不相似。
 }

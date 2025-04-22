@@ -1,4 +1,3 @@
-// filepath: c:\project\vector-storage\src\common\constants.ts
 /**
  * 定义常量
  * 包含向量存储使用的默认配置值和API地址
